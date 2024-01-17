@@ -59,8 +59,40 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getDataFromLocalDb()
+        getTransactionData()
+//        getDataFromLocalDb()
         fetchAllPost()
+    }
+
+    private fun getTransactionData() {
+
+        viewModel.transactionResponse.observe(requireActivity()){
+            when (it) {
+                is NetworkResult.Loading -> {
+                    binding?.progressBar?.isVisible = it.isLoading
+                }
+
+                is NetworkResult.Failure -> {
+                    Log.e("HomeFragment ","API Failed for transaction is ${it.errorMessage}")
+                    Toast.makeText(
+                        requireActivity(),
+                        "API Failure 11 : $it.errorMessage",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    binding?.progressBar?.isVisible = false
+                }
+
+                is NetworkResult.Success -> {
+                    Toast.makeText(
+                        requireActivity(),
+                        "API Failure : ${it.data}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    Log.e("HomeFragment ","Response for transaction is ${it.data}")
+                    binding?.progressBar?.isVisible = true
+                }
+            }
+        }
     }
 
     private fun fetchAllPost() {

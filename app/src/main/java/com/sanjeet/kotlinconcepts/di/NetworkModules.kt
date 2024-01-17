@@ -1,12 +1,15 @@
 package com.sanjeet.kotlinconcepts.di
 
 
+import android.content.SharedPreferences
 import com.sanjeet.kotlinconcepts.network.ApiService
 import com.sanjeet.kotlinconcepts.utils.Constant.BASE_URL
+import com.sanjeet.kotlinconcepts.utils.Constant.NEW_BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -27,6 +30,19 @@ object NetworkModules {
             .connectTimeout(15, TimeUnit.SECONDS)
             .build()
     }
+
+//    @Singleton
+//    @Provides
+//    fun provideHttpClient() = OkHttpClient.Builder()
+//        .addInterceptor(Interceptor(){
+//            val staticToken = "6945595921271780"
+//
+//            val newRequest = it.request().newBuilder()
+//                .addHeader("Authorization","Bearer $staticToken")
+//                .build()
+//
+//            it.proceed(newRequest)
+//        })
 
     @Singleton
     @Provides

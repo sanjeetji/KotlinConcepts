@@ -1,10 +1,9 @@
-package com.sanjeet.programs.basic
+package com.sanjeet.programs.basic.KotlinProgram
 
-import java.util.Arrays
 import java.util.Scanner
 
 fun main() {
-//    println("Hello Sanjeet kumar ! \nAddition is : ${addTwoNo(5, 6)}")
+    println("Hello Sanjeet kumar ! \nAddition is : ${addTwoNo(5, 6)}")
 //    higherOrderFun(21, 54, lambda)
 //    error()
 //    nullSafetyExample()
@@ -18,6 +17,143 @@ fun main() {
 //    continueStatement()
 //    arrayFunction()
 //    stringFunction()
+//    everyVariableIsNonNull();
+//    higherOrderFunctionExample();
+//    ifElseIfAsExpression()
+//    defaultArgument();
+//    namedArgument()
+//    lambdaFunction()
+//    highLevelFun(name1,age1,add2No(age1,age1))
+//    higherOrderFunWithLambda()
+
+}
+
+fun higherOrderFunWithLambda() {
+    var age = 21;
+    var gender = "Male"
+    exampleOfHighLevelFun(age,gender,{a:Int,b:Int->a+b})
+}
+
+fun exampleOfHighLevelFun(age: Int, gender: String, function: (Int, Int) -> Int) {
+    println("Student Age is $age")
+    println("Student gender is $gender")
+    println("Addition is ${function(21,43)}")
+}
+
+fun lambdaFunction() {
+    val addition = {a:Int,b:Int->a+b}
+    println("Addition is : ${addition(2,4)}")
+
+    //Case 1
+    var lambda = {name :String -> println("Good Morning $name") }
+    lambda("Sanjeet")
+
+    //Case 2
+    var lambdaMultiLine = {a:Int , b:Int ->
+        println("Addition of 2 no is ${a+b}")
+    }
+    lambdaMultiLine(43,654)
+
+    //Case 3
+    var lambdaMultiWithType :(Int ,String)->Int = {a,b ->
+        println("Student age is $a")
+        println("Student name is $b")
+        2
+    }
+
+    lambdaMultiWithType(32,"Sanjeet")
+}
+
+fun namedArgument() {
+    student()
+}
+
+fun student() {
+    callingNamedArgumentFun()//Success
+//    callingNamedArgumentFun("Mohan",18)// will give the error at compile time //The integer literal does not conform to the expected type String
+    callingNamedArgumentFun("Sanjeet", roll = 24)//Success
+}
+
+fun callingNamedArgumentFun(name:String = "Mohan",gender:String="Male",roll:Int=20) {
+    println("Name is $name")
+    println("Gender is $gender")
+    println("Roll no is $roll")
+}
+
+
+/**
+ * Default argument is used to provide default value to a function parameter.
+ * That means if the parameter is not explicitly passed in when function is called.
+ * It will use the default value.
+ */
+fun defaultArgument() {
+    println("Default Parameter function example .......")
+    greeting("Mohan")
+}
+
+fun greeting(userName:String = "Sanjeet Kumar") {
+    println("Good Morning $userName")
+}
+
+fun ifElseIfAsExpression() {
+    val a = 5;
+    val b= 6;
+    val result = if (a>b){
+        a
+    }else{
+        b
+    }
+
+    println("Large no is : $result")
+}
+
+/**
+ * A Higher Order function is a function which can accept the function
+ * as a parameter or return a function or can do both.
+ * HigherOrder function example passing a simple function as a argument
+ */
+
+fun add2No(a:Int,b:Int):Int{
+    return a+b;
+}
+
+var name1 :String = "Sanjeet";
+var age1:Int = 42;
+
+
+fun highLevelFun(name1: String, age1: Int, resultOfAdd2No: Int) {
+    println("User name is $name1")
+    println("User age is $age1")
+    println("User result is $resultOfAdd2No")
+}
+
+
+fun higherOrderFunctionExample() {
+    val result : Int = additionOfThreeNo(5,8, additionOfTwoNo(2,5))
+    println("Higher Order Function Result is : $result")
+}
+fun additionOfThreeNo(a:Int, b:Int, c:Int):Int{
+    val addition : Int = a+b+c;
+    return addition;
+}
+fun additionOfTwoNo(a:Int,b:Int):Int{
+    val c= a+b;
+    return c;
+}
+
+/**
+ * In Kotlin every variable is as Non-Null variable.
+ * So we can not assign null value directly to the variable.
+ * To assign a null value we need to declare a variable as nullable with the help of ?.
+ * Other wise it'll give the compile time error.
+ */
+fun everyVariableIsNonNull() {
+    var name : String? = "Sanjeet";
+    println(name)
+    name = null;
+    println("Name length is ${name?.length}")
+    var gender:String = "Male"
+    println("Gender length is ${gender.length}")
 }
 
 fun stringFunction() {

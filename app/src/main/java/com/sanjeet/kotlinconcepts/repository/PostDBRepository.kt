@@ -6,8 +6,6 @@ import com.sanjeet.kotlinconcepts.database.entity.PostItem
 import javax.inject.Inject
 
 class PostDBRepository @Inject constructor(
-
-
     private val appDatabase: AppDatabase
 ) {
 
