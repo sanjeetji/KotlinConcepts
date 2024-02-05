@@ -1,15 +1,17 @@
 package com.sanjeet.kotlinconcepts.ui.fragment
 
+import android.R
+import android.app.FragmentTransaction
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
+import android.text.TextUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import android.provider.Settings
-import android.text.TextUtils
-import android.util.Log
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -22,6 +24,7 @@ import com.sanjeet.kotlinconcepts.ui.viewmodel.PostViewModel
 import com.sanjeet.kotlinconcepts.utils.NetworkResult
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -54,13 +57,18 @@ class HomeFragment : Fragment() {
         binding?.tvAccessbility?.setOnClickListener {
             isAccessibilityServiceEnabled(requireActivity())
         }
+        binding?.tvTop?.setOnClickListener {
+            //        startActivity(Intent(this@MainActivity,FirstActivity::class.java))//For two activity lifecycle
+//            startActivity(Intent(requireActivity(), BoundServiceActivity::class.java))//For Bound Service Example
+//            startActivity(Intent(requireActivity(), ForegroundActivity::class.java))//For Foreground Service Example
+//            startActivity(Intent(requireActivity(), BroadcastReceiverActivity::class.java))//For Foreground Service Example
+        }
         return binding?.root!!
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getTransactionData()
-//        getDataFromLocalDb()
         fetchAllPost()
     }
 

@@ -27,5 +27,8 @@ public class JavaPrograms {
         } else if (name instanceof String) {
             System.out.println("name is instance of String");
         }
+
+        String userName = "Sanjeet";
+        userName = "Mohan";
     }
 }

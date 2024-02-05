@@ -45,5 +45,5 @@ fun main() {
     interfaceExampleImplObj.showUserCityAndPost("Gajrault","Negliya Mev")
     println("User name using abstract property from interface ${interfaceExampleImplObj.name}")
     println("User name using non-abstract property from interface ${interfaceExampleImplObj.age}")
-
+    
 }

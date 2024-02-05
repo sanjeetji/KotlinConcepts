@@ -1,5 +1,6 @@
 package com.sanjeet.kotlinconcepts.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
+import com.sanjeet.kotlinconcepts.TestExample.ExampleMainActivity
 import com.sanjeet.kotlinconcepts.database.entity.PostItem
 import com.sanjeet.kotlinconcepts.databinding.FragmentDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,6 +31,12 @@ class DetailFragment : Fragment() {
 
         binding?.imgBack?.setOnClickListener {
             val action = DetailFragmentDirections.actionDetailFragmentToHomeFragment()
+            Navigation.findNavController(requireView()).navigate(action)
+        }
+
+        binding?.tvTop?.setOnClickListener {
+            startActivity(Intent(requireActivity(),ExampleMainActivity::class.java))
+            val action = DetailFragmentDirections.actionHomeFragmentToAudioFragment()
             Navigation.findNavController(requireView()).navigate(action)
         }
 
